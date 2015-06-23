@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    {% load staticfiles %}
+    {% block base_block %}
+            {% include 'base/base.html' %}
+    {% endblock %}
+    
+    <script>
+        function showText(id,delay){
+        var elem=document.getElementById(id);
+        setTimeout(function(){elem.style.visibility='visible';},delay*500)
+        }
+        window.onload=function(){
+        showText('delayedText0',2);
+        showText('delayedText1',3);
+        showText('delayedText2',4);
+        showText('delayedText3',5);
+        
+        showText('delayedText10',2);
+        showText('delayedText11',3);
+        showText('delayedText12',4);
+        showText('delayedText13',5);
+        
+        showText('delayedText20',2);
+        showText('delayedText21',3);
+        showText('delayedText22',4);
+        showText('delayedText23',5);
+        }
+        
+        function myCorrectClick() {
+            var msg=document.getElementById("ans");
+            msg.innerHTML = "<img src={% static "img/tick.gif" %} width=50px height=50px/>";
+        }    
+        
+        function myWrongClick() {
+            var msg=document.getElementById("ans");
+            msg.innerHTML = "<img src={% static "img/cross.gif" %} width=50px height=50px/>";
+        }          
+
+        function PlaySound(soundobj) {
+              var thissound=document.getElementById(soundobj);
+              thissound.play();
+        }
+
+
+    </script>   
+   
+<style>   
+    .circle {
+        cursor:url({% static "img/blue_circle.png" %}), auto;
+    }
+        
+    
+</style>
+</head>
+
+<body >
+   
+    <header>
+
+        {% block navbar_block %}
+            <p2 style="color:white"><a href="/base/profile"><p2 style="color:white">Prosperidad</p2></a> : English Test </p2>
+        {% endblock %}
+
+    </header>
+    
+    <audio id="success" src="{% static "audio/applause.mp3" %}" preload="auto" autobuffer>
+    </audio>
+    <audio id="wrong" src="{% static "audio/error.mp3" %}" preload="auto" autobuffer>
+    </audio>
+    
+    
+    <div style="background-image: url({% static "img/bg_english.png" %}); height: 620px; width: 1348px; border: 1px solid black;" >   
+        <div class="rows">
+            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+            <div class="col-sm-4" ><p1 style="font-size:40px; color:purple;">Circle Proper Word</p1></div>
+            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+            <div class="col-sm-12" ><hr/></div>
+
+            <div class="col-sm-3" ><p1 style="font-size:30px; color:red;"></div>
+            <div id="delayedText0" style="visibility:hidden" class="col-sm-2" ><img src={% static "img/fish.jpg" %} width=150px height=120px/></div>
+            <div id="delayedText1" style="visibility:hidden" class="circle col-sm-2" >
+            
+            <button style="font-size:50px; background-color:transparent; color:red; border:none" class="circle"; onclick="myWrongClick(); PlaySound('wrong')"><p1 style="font-size:70px; color:transparent;">.</p1>dish</button></div>
+            <div id="delayedText2" style="visibility:hidden" class="circle col-sm-2" >
+            <button style="font-size:50px; background-color:transparent; color:red; border:none" class="circle"; onclick="myCorrectClick(); PlaySound('success')"><p1 style="font-size:70px; color:transparent;">.</p1>fish</button></div>
+            <div id="delayedText3" style="visibility:hidden" class="circle col-sm-2">
+            <button style="font-size:50px; background-color:transparent; color:red; border:none" class="circle"; onclick="myWrongClick(); PlaySound('wrong')"><p1 style="font-size:70px; color:transparent;">.</p1>wish</button></div>
+            <div id="ans" class="circle col-sm-1"><p1 style="font-size:25px; color:red;"></p1></div>
+            
+
+            <div class="col-sm-12" ><p1 style="font-size:25px; color:transparent;">.</p1></div>
+            <div class="col-sm-3" ><p1 style="font-size:30px; color:red;"></div>
+            <div id="delayedText10" style="visibility:hidden" class="col-sm-2" ><img src={% static "img/mug.jpg" %} width=150px height=120px/></div>
+            <div id="delayedText11" style="visibility:hidden" class="circle col-sm-2" ><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">pug</p1></div>
+            <div id="delayedText12" style="visibility:hidden" class="circle col-sm-2" ><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">tug</p1></div>
+            <div id="delayedText13" style="visibility:hidden" class="circle col-sm-2"><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">mug</p1></div>
+            
+            <div class="col-sm-12" ><p1 style="font-size:25px; color:transparent;">.</p1></div>
+            <div class="col-sm-3" ><p1 style="font-size:30px; color:red;"></div>
+            <div id="delayedText20" style="visibility:hidden" class="col-sm-2" ><img src={% static "img/hot.jpg" %} width=150px height=120px/></div>
+            <div id="delayedText21" style="visibility:hidden" class="circle col-sm-2" ><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">lot</p1></div>
+            <div id="delayedText22" style="visibility:hidden" class="circle col-sm-2" ><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">hot</p1></div>
+            <div id="delayedText23" style="visibility:hidden" class="circle col-sm-2"><p1 style="font-size:75px; color:transparent;">.</p1><p1 style="font-size:50px; color:red;">not</p1></div>
+            
+            <div class="col-sm-12" ><p1 style="font-size:40px; color:transparent; align:right;"><a href="/base/englishtest2"><p2 style="color:white">Next</p2></a></p1></div>
+        </div>    
+            
+        </div>
+  
+    </div>
+        
+    <footer>
+        {% block footer_block %}
+            {% include 'base/footer.html' %}
+        {% endblock %}
+    </footer>
+
+    {% block basefoot_block %}
+        {% include 'base/basefoot.html' %}
+    {% endblock %}
+
+</body>
+
+</html>

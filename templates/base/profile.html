@@ -1,0 +1,205 @@
+<!doctype html> 
+{% extends "base/aboutus.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+<html>
+
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+    newwindow=window.open(url,'{{title}}','height=200,width=150');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+
+// -->
+</script>
+
+    <head>
+
+        <title>Q n A - Addition It Solutions Pvt. Ltd.</title>
+
+    </head>
+
+
+    <body>
+    
+    <script>
+        function notice(kind) {
+          alert("Was successful?: ");
+          });
+        }
+        function addClickHandlers() {
+          $("#upvote").click( alert("Was successful?: ");)
+        }
+        $(document).ready(addClickHandlers);
+    </script>
+        
+    
+        {% block mainbody_block %}
+            {% if user.is_authenticated %}
+                <br/>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-8 ">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                            <h3 id="noticewq" class="panel-title">{% trans "Photographs" %}</h3>
+                          </div>
+                        <div class="panel-body">
+                           {% include 'base/sliderbox.html' %}
+                          </div>
+                      </div>
+
+                    <div class="col-sm-4 ">
+                        
+                        <div class="panel panel-default panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">{% trans "Welcome to Excelencia" %}</h3>
+                          </div>
+                          <div class="container">   
+                            <div class="col-sm-8">
+                                <div class="col-sm-2">
+                                    <img src="{{ userprofile.picture.url }}" width="100" height="100" /> 
+                                </div>
+                                <div class="col-sm-4">
+                                    <br/>
+                                    {% trans "First Name" %}: <i> {{ user.first_name }} </i> <br/>
+                                    {% trans "Last Name" %}: <i>{{ user.last_name }}</i><br/>
+                                    {% trans "Mother" %}: <i>{{ userprofile.mother_name }}</i><br/>
+                                    {% trans "Father" %}: <i>{{ userprofile.father_name }}</i><br/>
+                                    {% trans "Mobile" %}: <i>{{ userprofile.mobile }} </i>
+                                    <br/>
+                                    .
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="panel panel-default panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Notice Board</h3>
+                          </div>
+                          <div class="panel-body">                  
+                                <ul id="notice" class="list-group">
+                                    No notices
+                                </ul>
+                          </div>
+                        </div>
+
+                    </div>
+                  </div>
+                 </div>
+
+
+                 <div class="row">
+                        <div class="col-sm-12">
+                          <section id="about">
+                            <div class="container">
+
+                                <div class="section-heading scrollpoint sp-effect3">
+                                    <h1>Excelencia</h1>
+                                    <div class="divider"></div>
+                                    <p>Excel in every field of life with right start</p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <div class="about-item scrollpoint sp-effect2">
+                                            <i class="fa fa-download fa-2x"></i>
+                                            <h3>Portion Paper</h3>
+                                            <ul id="portion" class="list-group">
+                                                No Data
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6" >
+                                        <div class="about-item scrollpoint sp-effect5">
+                                            <i class="fa fa-mobile fa-2x"></i>
+                                            <h3>Tests</h3>
+                                            <ul id="tests" class="list-group">
+                                                No Tests
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6" >
+                                        <div class="about-item scrollpoint sp-effect5">
+                                            <i class="fa fa-users fa-2x"></i>
+                                            <h3>Activities</h3>
+                                            <ul id="activities" class="list-group">
+                                                No Activities
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6" >
+                                        <div class="about-item scrollpoint sp-effect1">
+                                            <i class="fa fa-sliders fa-2x"></i>
+                                            <h3><a href="/xbase/phonetics">Phonetics</a></h3>
+                                            
+                                            <p>Learn how to pronounce correctly.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              </div>
+                        </section>
+                      </div>
+                 
+                 <div class="container">
+                 <div class="row">
+                    <div class="col-sm-8 ">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                            <h3 id="video" class="panel-title">Video</h3>
+                          </div>
+                        <div class="panel-body">
+                           {% include 'base/sliderbox.html' %}
+                          </div>
+                      </div>
+
+
+                    <div class="col-sm-4 ">
+
+                        <div class="panel panel-default panel-primary">
+                          <div class="panel-heading col-sm-12">
+                            <div class="col-sm-8">
+                            <h3 class="panel-title">Messaging</h3>
+                            </div>
+                            <div class="col-sm-4">
+                            {% url 'new_message' as the_url %}
+                            <a class="btn-sm btn-danger" href="{{ the_url }}">N e w</a>
+                            </div>
+                          </div>
+                          <div class="panel-body">                  
+                                <ul id="messages" class="list-group">
+                                    No messages
+                                </ul>
+                          </div>
+                        </div>
+                        
+                    </div>
+                  </div>
+                 </div>
+                 </div> 
+                      
+                      
+                      
+                      
+                </div>
+
+
+            {% else %}
+                <br/><br/>
+                You are not autheticated to view this page. <br/><br/>
+                Please login.
+
+            {% endif %}
+        {% endblock %}
+
+    </body>
+
+</html>
+
+
+

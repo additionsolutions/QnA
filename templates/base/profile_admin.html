@@ -1,0 +1,43 @@
+<!doctype html>
+{% extends "base/aboutus.html" %}
+
+<html>
+    <head>
+        <title>Tiny Totts - Admin</title>
+    </head>
+
+
+    <body>
+        {% block mainbody_block %}
+            {% if user.is_authenticated and admin%}
+                <div>
+                    <div id="aheader">
+                        {% block heading_block %}
+                            <H3> Welcome Admin : <i>{{ user.first_name }} {{ user.last_name }} </i></H3>
+                        {% endblock %}
+                    </div>
+                </div>
+                        {% include "base/admin_menu.html" %}
+                    <div id="asection">
+                        Hello Admin
+                    </div>
+                    <div id="afooter">
+                        {% block status_block %}
+                            I'm down trodden
+                        {% endblock %}
+                    </div>
+
+            {% else %}
+                    <br/><br/>
+                    <h1>Access Denied</h1>
+                    <hr/>
+                    You are not autheticated to view this page. <br/><br/>
+                    Please login.
+            {% endif %}
+        {% endblock %}
+    </body>
+
+</html>
+
+
+

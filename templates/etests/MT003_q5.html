@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+ {% extends 'etests/missing_nos.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block missing_nos_test %}
+            <div class="col-sm-2">
+            <img src={% static "img/hut.jpg" %} width=250px height=240px/></div>
+            
+            <div id="ztext_right" class="col-sm-1">1</div>
+            <div id="zblank1" class="zblank col-sm-2"></div>
+            <div id="ztext" class="col-sm-1">3</div>
+	    <div id="zblank2" class="zblank col-sm-2"></div>
+            
+
+            
+            <div class="col-sm-12" ><hr/></div>
+           
+            
+            <div id="zans0" class="zans col-sm-2"><p>2</p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans1" class="zans col-sm-2"><p>0</p></div>
+	    <div class="col-sm-1"></div>
+            <div id="zans2" class="zans col-sm-2"><p>5</p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans3" class="zans col-sm-2"><p>4</p></div>
+
+            <div id="ans_area" class="col-sm-1" h3></div>
+            
+    {% endblock %}
+
+</body>
+	{% block missing_nos_test_header %}  
+	    <script type="text/javascript">
+		 
+		 localStorage.setItem("pos1",1);
+		 localStorage.setItem("pos2",4);
+
+	      </script>
+    	{% endblock %}
+
+
+</html>

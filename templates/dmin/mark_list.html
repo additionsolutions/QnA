@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>Marks Report</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Marks Report</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+
+        {% load staticfiles %}
+	<div class="col-sm-10">
+               
+                <div id="resultsarea" class =col-sm-10">
+			<div id="asection">
+			    <div class="container">
+				  <div class="row">
+				    <div class="col-md-9">
+				    
+				      <br><br>
+				        <table  class="table table-hover" >
+				        <tbody>
+				            <colgroup>
+				                <col class="col-md-3">
+				                <col class="col-md-3">
+				                <col class="col-md-3">
+				                
+				                
+				            </colgroup>
+				          <tr class="info">
+				            <th>User</th>
+				            <th>Question Name</th>
+					    <th>Marks</th>
+				            
+				          </tr>
+
+				            {% for answer in object_list %}
+				                <tr>
+				                    <td>{{ answer.user }}</td>
+				                    <td>{{ answer.question }}</td>
+						    <td>{{ answer.marks }} </td>
+				                    
+				                    
+				                    
+				            {% endfor %}
+				            </tr>
+				            </tbody>
+				        </table>
+
+				    </div>
+				  </div>
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

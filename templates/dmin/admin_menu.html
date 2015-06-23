@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+	#leftMenu .accordion-group {
+    margin-bottom: 0px;
+    border:0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}    
+
+#leftMenu .accordion-heading {
+    height: 34px;
+    border-top: 1px solid #717171; /* inner stroke */
+    border-bottom: 1px solid #5A5A5A; /* inner stroke */
+    background-color: #ddd; /* layer fill content */
+    
+    list-style-type:none;
+}  
+
+#leftMenu .accordion-heading  a{  
+    color: black; /* text color */
+     /* drop shadow */
+    text-decoration:none;
+    font-weight:bold;  
+}
+
+#leftMenu .accordion-heading  a:hover{  
+    color:#ccc     
+}
+
+#leftMenu .accordion-heading .active {
+    width: 182px;
+    height: 34px;
+    border: 1px solid #5b5b5b; /* inner stroke */
+    background-color: #353535; /* layer fill content */
+    background-image: -moz-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+    background-image: linear-gradient(90deg, #4b4b4b 0%, #555 100%); /* gradient overlay */
+}
+
+#usr {
+  color: black;
+}
+</style>
+</head>
+<body>
+<div class="accordion" id="leftMenu">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a  href="/a/dmin/profile">
+                  <i class="icon-home"></i> Admin Menu
+            </a>
+        </div>
+    </div>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseTwo">
+                <i class="icon-th"></i> User
+            </a>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li><a id="usr" href="/a/dmin/user">User</a></li>
+                    <li><a id="usr" href="/a/dmin/groups" >Group</a></li>               
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
+                <i class="icon-th-list"></i> Contents
+            </a>
+        </div>
+        <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li><a id="usr" href="/a/dmin/contenttype">Content Type</a></li>
+                    <li><a id="usr" href="/a/dmin/content_contenttype">Content</a></li>
+                    
+                </ul>                 
+            </div>
+         </div>
+    </div>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFour">
+                <i class="icon-list-alt"></i> Etests
+            </a>
+        </div>
+        <div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li><a id="usr" href="/a/dmin/testset">Test Sets</a></li>
+                    <li><a id="usr" href="/a/dmin/testsetline_testset">Test Set Lines</a></li>
+		    <li><a id="usr" href="/a/dmin/category">Category</a></li>
+		    <li><a id="usr" href="/a/dmin/question">Question</a></li>
+		    <li><a id="usr" href="/a/dmin/option">Options</a></li>
+                </ul>                 
+            </div>
+         </div>
+    </div>
+    
+        <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFive">
+                <i class="icon-list-alt"></i> Reports
+            </a>
+        </div>
+        <div id="collapseFive" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li><a id="usr" href="/a/dmin/userreport">User Marks</a></li>
+                    <li><a id="usr" href="/a/dmin/summaryreport">Summary Report</a></li>
+                </ul>                 
+            </div>
+         </div>
+    </div>
+    
+    
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title>Test</title>
+        {% load staticfiles %}
+        {% block base_block %}
+            {% include 'base/base.html' %}
+        {% endblock %}
+        
+        
+    </head>
+
+    <body>
+        <header>
+        {% block navbar_block %}
+            <a href="/base/profile"><p2 style="color:white">Prosperidad (Home)</p2></a>
+        {% endblock %}     
+        </header>
+
+        {% block test_body %}
+            This is test body
+        {% endblock %}
+        
+        {% block basefoot_block %}
+            {% include 'base/basefoot.html' %}
+        {% endblock %}
+    
+    </body>
+</html>
+
+
+
+
+
+

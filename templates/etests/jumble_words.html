@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    {% load staticfiles %}
+    {% block jumble_words_test_header %}
+                        
+              Jumble Words test header
+                        
+    {% endblock %}
+    <script>
+        $( init );
+	
+        function init() {	
+	  
+	  var pos1= localStorage.getItem("pos1");
+	  var pos2= localStorage.getItem("pos2");
+          var pos3= localStorage.getItem("pos3");
+
+	  $('#zans2').draggable({
+            containment: '#testarea',
+            stack: '#zans2',
+            cursor: 'move',
+            helper: 'clone',
+            revert: true
+            });
+          $('#zans2').data( 'number', 3 )
+          
+          $('#zans1').draggable({
+            containment: '#testarea',
+            stack: '#zans1',
+            cursor: 'move',
+            helper: 'clone',
+            revert: true
+            });
+          $('#zans1').data( 'number', 2 )
+          
+          $('#zans0').draggable({
+            containment: '#testarea',
+            cursor: 'move',
+            helper: 'clone',
+            revert: true
+            });
+          $('#zans0').data( 'number', 1 )
+          
+          $('#zblank1').droppable({
+            tolerance: "touch",
+            hoverClass: "hovered",
+            accept: '#zans0,#zans1,#zans2',
+            drop: handleAnsDrop
+            });
+	  $('#zblank1').data( 'blank_number', pos1 )
+
+	  $('#zblank2').droppable({
+            tolerance: "touch",
+            hoverClass: "hovered",
+            accept: '#zans1,#zans2,#zans0',
+            drop: handleAnsDrop
+            });
+	  $('#zblank2').data( 'blank_number', pos2 )
+
+	  $('#zblank3').droppable({
+            tolerance: "touch",
+            hoverClass: "hovered",
+            accept: '#zans2,#zans0,#zans1',
+            drop: handleAnsDrop
+            });
+          $('#zblank3').data( 'blank_number', pos3 )
+          
+        }
+     
+        function handleAnsDrop( event, ui ) {
+            var ansMarks = ui.draggable.data( 'number' );
+            // alert (ansMarks);
+	    var ansBlank = $(this).data('blank_number');
+	    // alert (ansBlank);
+            ui.draggable.draggable( 'disable' );
+            $(this).droppable( 'disable' );
+            ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+            ui.draggable.draggable( 'option', 'revert', false );
+	    if( ansMarks == ansBlank)
+	    {	  
+		var flag =1;
+            	marks(flag);
+	    }
+	    else
+	    {
+		var flag =0;
+		marks(flag);
+	    }
+        }
+        
+    </script> 
+    <style>   
+        #ztext {
+          font-size: 700%;
+        }
+        
+        #ztext_right {
+          font-size: 700%;
+          text-align: right;
+        }
+
+	#zblank3 {
+  	 margin-left: 100px;
+	}        
+
+	#zblank2 {
+	 float:left;
+	 margin-left:100px;
+	}
+        .zblank {
+          font-size: 700%;
+          float: left;
+          width: 120px;
+          height: 110px;
+          padding: 10px;
+          padding-top: 2px;
+          padding-bottom: 0;
+          border: 2px dashed #333;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          margin: 0 0 0 0;
+          background: #fff;
+        }
+        
+        .hovered {
+          background: #aaa;
+        }
+        
+        .zans {
+          font-size: 700%;
+          text-align : center;
+          vertical-align: middle;
+          color : blue;
+          float: left;
+          width: 120px;
+          height: 110px;
+          padding: 1px;
+          padding-top: 2px;
+          padding-bottom: 0;
+          border: 2px solid #333;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          margin: 0 0 0 2px;
+          background: #ccc;
+        }
+        
+        .zans p {
+            margin-top: -28px;
+        }         
+        
+        .parent{
+            width:1360px;
+            height:550px;
+            position:relative;
+            border:1px solid black;
+        }
+        .parent:after{
+            content:'';
+            background:url({% static "img/jumble_background.png" %});
+            width:1360px;
+            height:550px;
+            position:absolute;
+            top:0;
+            left:0;
+            opacity:0.7;
+        }
+        .child{
+            position:relative;
+            z-index:1;
+        }
+
+    </style>
+</head>
+
+<body >   
+    
+    <div id="testarea" class="parent">  
+
+            <div class="child rows">
+                    <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+                    <div class="col-sm-4" ><p1 style="font-size:40px; color:purple;">Jumble Words</p1></div>
+                    <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+                    <div class="col-sm-12" ><hr/></div>
+                    <div class="col-sm-12" ><p1>.</p1></div>
+                    
+                    {% block jumble_words_test %}
+                        
+                            Jumble Words test
+                        
+                    {% endblock %}
+                   
+            </div>
+    </div>    
+
+</body>
+
+</html>

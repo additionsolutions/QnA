@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>Option</title>
+	
+    </head>
+	
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Option</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+        <div class="col-sm-10">
+                
+                <div id="resultsarea" class ="col-sm-12">
+			<div id="asection" class ="col-sm-5">
+			   
+			    <h2> </h2>
+			   
+    				{% csrf_token %}
+					
+				<label for="Question">Question </label>
+				<select class="select form-control" id="questionSelect" onchange="getOption()">
+				{% for questionlist in question_object_list %}	
+					
+					<option value="{{questionlist.id}}">{{questionlist.test_question}}</option>
+					
+				{% endfor %}
+				</select>
+				
+    				<br/><br/>
+    				
+			   
+			    
+			    
+			</div>
+			<div id="optionarea" class ="col-sm-7">
+			    
+			    
+			    
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

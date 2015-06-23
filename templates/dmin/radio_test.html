@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Option</title>
+	<script src="{% static "js/addsol.js" %}"></script>
+    </head>
+	
+    <body>
+
+	<div id="testarea" class="parent">  
+
+		    <div class="child rows">
+		            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+		            <div class="col-sm-4" ><p1 style="font-size:40px; color:purple;">Aptitude Test</p1></div>
+		            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+		            <div class="col-sm-12" ><hr/></div>
+		            <div class="col-sm-12"  >
+		            
+		            {% csrf_token %}
+				{% if question_list.url == ''%}
+					<p1 style="font-size:30px; color:red">
+					{{ question_list}}</p1>
+				{% else %}
+					<p1 style="font-size:30px; color:red">
+					{{ question_list}}</p1>
+					<img src="{{ question_list.url}}" height="100px" width="100px" />
+				{% endif %}
+				<br/><br/>
+			    </div>
+                            <div class="col-sm-12"  >
+				{% for radio in option_obj %} 
+                                        
+					{% if radio.url == ''%}
+						<input type="radio" name="optn" onclick="marks({{radio.mark}})" value="{{radio.mark}}"/>
+						{{radio.SrNo}}){{ radio.option }} 
+					{% else %}
+						<input type="radio" name="optn" onclick="marks({{radio.mark}})" value="{{radio.mark}}"/>
+						{{radio.SrNo}}){{ radio.option }} <img src="{{radio.url}}" height="100px" width="100px" />
+					{% endif %}
+    					
+					<br/><br/>
+				{% endfor %}
+			   </div>
+				
+		           
+		    </div>
+	</div>  
+	{% load staticfiles %}
+	<div class="container">
+	<div class="rows">
+	{% if record == 'last' %}
+	      <div class="col-sm-4" >
+	      	<image src="{% static "img/previous.png" %}" height="100px" width="100px" onclick="navigate(1)" name="Previous" id="prev" />
+	      </div>
+	      <button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+	      <div class="col-sm-4" ><image src="{% static "img/submit.png" %}" height="100px" width="100px" onclick="navigate(0)"  id="submit" /></div>
+	{% endif %}
+
+	{% if record == 'first' %}
+
+	    <button type="button" style="visibility:hidden">hide_me</button>
+	    <div class="col-sm-4" ><image src="{% static "img/next.png" %}" height="100px" width="100px" onclick="navigate(2)" name="Next" id="next" /></div>
+	    <button type="button" style="visibility:hidden">hide_me</button>
+
+	{% endif %}
+
+	{% if record == 'normal' %}
+	  <div class="col-sm-4" ><image src="{% static "img/previous.png" %}" height="100px" width="100px" onclick="navigate(1)" name="Previous" id="prev" /></div>
+		<button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+	  <div class="col-sm-4" ><image src="{% static "img/next.png" %}" height="100px" width="100px" onclick="navigate(2)" name="Next" id="next" /></div>
+	{% endif %}
+	</div>
+	</div>  
+    
+    </body>
+</html>
+
+
+
+
+
+

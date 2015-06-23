@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>User</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Edit User</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+        <div class="col-sm-10">
+                
+                <div id="resultsarea" class =col-sm-10">
+			<div id="asection">
+			    <a class="btn btn-primary" href="{% url "userlist" %}">Back to UserList</a>
+				      <br><br>
+			    
+				
+				    {% load crispy_forms_tags %}
+
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% crispy user_form %}
+                        {% crispy profile_form %}
+                        <p>.</p>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </form>
+				   
+				    
+				
+			    
+			    
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

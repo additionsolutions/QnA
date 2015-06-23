@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ {% extends 'etests/fraction_addition.html' %}
+
+<head>
+    {% load staticfiles %}
+</head>
+
+<body >
+       
+    {% block addition_fraction_test %}
+            
+            <div id="ztext_right" class="col-sm-4">2/3+3/3=</div>
+            <div id="zblank1" class="zblank col-sm-2"></div>
+            <div id="ztext" class="col-sm-4"></div>
+
+            
+            <div class="col-sm-12" ><hr/></div>
+           
+            
+            <div id="zans0" class="zans col-sm-2"><p>5/3</p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans1" class="zans col-sm-2"><p>4/3</p></div>
+	    <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans2" class="zans col-sm-2"><p>7/3</p></div>
+
+            <div id="ans_area" class="col-sm-3" h3></div>
+            
+    {% endblock %}
+
+</body>
+    {% block addition_fraction_test_header %}  
+	    <script type="text/javascript">
+		 
+		 localStorage.setItem("pos1",1);
+		 
+	      </script>
+    {% endblock %}
+</html>

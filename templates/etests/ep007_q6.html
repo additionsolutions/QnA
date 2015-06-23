@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+ {% extends 'etests/missing_alphabets.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block missing_alphabets_test %}
+            <div class="col-sm-2">
+            <img src={% static "img/Den.jpg" %} width=250px height=240px/></div>
+            
+            <div id="ztext_right" class="col-sm-2">d</div>	    
+            <div id="zblank1" class="zblank col-sm-2"></div>
+            <div id="ztext" class="col-sm-1">n</div>
+            
+            <div class="col-sm-12" >.</div>
+
+           
+            <div class="col-sm-12" ><hr/></div>
+           
+            <div id="zans0" class="zans col-sm-2"><p>e</p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans1" class="zans col-sm-2"><p>a</p></div>
+	    <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans2" class="zans col-sm-2"><p>e</p></div>
+
+            <div id="ans_area" class="col-sm-3" h3></div>
+            
+    {% endblock %}
+
+</body>
+	{% block missing_alphabets_test_header %}  
+	    <script type="text/javascript">
+		 
+		 localStorage.setItem("pos1",3);
+		 
+	      </script>
+        {% endblock %}
+
+</html>

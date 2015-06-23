@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+ {% extends 'etests/maths_odd_one_out.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block maths_odd_one_out_test %}
+
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>7</button></div>           
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>7</button></div>
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>7</button></div>
+            <div class="circle col-sm-3">
+            <button class="circle" onclick="marks(1)";>8</button></div>
+            
+            
+            <div id="ans_area" class="col-sm-3" h3>
+
+            </div>     
+    {% endblock %}
+
+</body>
+
+</html>

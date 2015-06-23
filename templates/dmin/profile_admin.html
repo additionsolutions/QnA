@@ -1,0 +1,66 @@
+<!doctype html>
+{% extends "dmin/base.html" %}
+
+<html>
+    <head>
+        <title>Tiny Totts - Admin</title>
+    </head>
+
+
+    <body>
+        {% block mainbody_block %}
+            {% if user.is_authenticated and admin%}
+                <div>
+                    <div id="aheader">
+                        {% block heading_block %}
+                      <!--<H3> Welcome Admin : <i>{{ user.first_name }} {{ user.last_name }} </i></H3>-->
+                        {% endblock %}
+                    </div>
+                </div>
+                    <div class="col-sm-2" style="background-color:#eee; height:550px">
+                	{% include 'dmin/admin_menu.html' %}
+            	    </div>
+		    <div class="col-sm-10">
+                	
+                	<div id="resultsarea" class =col-sm-10">
+                    		<div id="asection">
+                                <h3>Hello Admin</h3> <br/>
+                                Please select menu option from left for desired operation.<p></p>
+                              
+                                    <a class="btn btn-primary" href="{% url "new_message" %}">New Message</a>
+                                    <p></p>
+                                    <div class="panel panel-default panel-primary">
+                                      <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                        Messaging</h3>
+                                      </div>
+                                      <div class="panel-body">                  
+                                            <ul id="messages" class="list-group">
+                                                No messages.
+                                            </ul>
+                                      </div>
+                                  </div>
+   
+                    		</div>
+			</div>
+		    </div>
+                    <div id="afooter">
+                        {% block status_block %}
+                         <!--   I'm down trodden -->
+                        {% endblock %}
+                    </div>
+
+            {% else %}
+                    <br/><br/>
+                    <h1>Access Denied</h1>
+                    <hr/>
+                    You are not autheticated to view this page. <br/><br/>
+                    Please login.
+            {% endif %}
+        {% endblock %}
+    </body>
+
+</html>
+
+
+

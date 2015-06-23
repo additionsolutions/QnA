@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+<html>
+    <head>
+        <title>Test Question Type</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Test Questions</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+
+        {% load staticfiles %}
+
+        <div id="asection">
+            <div class="container">
+                  <div class="row">
+                    <div class="col-md-9">
+                    <a class="btn btn-primary" href="{% url "testset_new" %}">Add Test Set</a>
+                      <br><br>
+                        <table  class="table table-hover" >
+                        <tbody>
+                            <colgroup>
+                                <col class="col-md-2">
+                                <col class="col-md-5">
+                                <col class="col-md-2">
+                                <col class="col-md-2">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                            </colgroup>
+                          <tr class="info">
+                            <th>File Name</th>
+			    <th>Test Set</th>
+                            
+                          </tr>
+
+                            {% for testsetline in object_list %}
+                                <tr>
+                                    <td>{{ testsetline.filename }}</td>
+				    <td>{{ testsetline.testset }}</td>
+                                                                      
+                                    
+					
+                                    {% empty %}
+                                        No Test Set yet
+                            {% endfor %}
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                  </div>
+        </div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

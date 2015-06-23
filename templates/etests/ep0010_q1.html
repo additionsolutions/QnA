@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ {% extends 'etests/jumble_words.html' %}
+
+<head>
+    {% load staticfiles %}
+    {% block jumble_words_test_header %}  
+	    <script type="text/javascript">
+		 
+		 localStorage.setItem("pos1",3);
+		 localStorage.setItem("pos2",2);
+		 localStorage.setItem("pos3",1);
+
+	      </script>
+    {% endblock %}
+</head>
+
+<body >
+       
+    {% block jumble_words_test %}
+            <div class="col-sm-2">
+            <img src={% static "img/hut.jpg" %} width=250px height=240px/></div>
+            
+            <div id="zblank1" class="zblank col-sm-2"></div>	    
+            <div id="zblank2" class="zblank col-sm-2"></div>
+            <div id="zblank3" class="zblank col-sm-2"></div>
+            
+            <div class="col-sm-12" >.</div>
+
+            
+            <div class="col-sm-12" ><hr/></div>
+           
+           <!-- <div class="btn btn-default btn-sm" onclick="myFunction()"; ></div> -->
+            <div id="zans0" class="zans col-sm-2" ><p>r</p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans1" class="zans col-sm-2" ><p>a</p></div>
+	    <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans2" class="zans col-sm-2"><p>c</p></div>
+
+            <div id="ans_area" class="col-sm-1" h3></div>
+            
+    {% endblock %}
+
+</body>
+
+</html>

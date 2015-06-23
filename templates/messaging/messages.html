@@ -1,0 +1,8 @@
+{% if messages.count > 0 %}  
+    {% for message in messages %}
+        <li class="list-group-item">  <b>{{ message.created }} </b><br/>
+        {{ message.short_message }}</li>
+    {% endfor %}
+{% else %}
+    <li class="list-group-item"> No data to show</li>
+{% endif %}

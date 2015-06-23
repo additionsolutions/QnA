@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+<html>
+    <head>
+        <title>Add User</title>
+    </head>
+
+    <body>
+    {% load staticfiles %}
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Users</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+        <div id="asection">
+            {% if registered %}
+                System says: <strong>Thank you for registering!</strong>
+                <a href="/base/">Return to the homepage.</a><br />
+            {% else %}
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <br>
+                        <table  class="table table-hover" >
+                        <tbody>
+                            <colgroup>
+                                <col class="col-md-1">
+                                <col class="col-md-2">
+                                <col class="col-md-2">
+                                <col class="col-md-3">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                            </colgroup>
+                          <tr class="info">
+                            <th>User Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                          </tr>
+                            {% for user in object_list %}
+                                {% if user.first_name != 'Rahul' %}
+                                  <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ user.first_name }}</td>
+                                    <td>{{ user.last_name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <a href="userupdate/{{ user.id }}" class="btn btn-primary inverse btn-sm">
+                                            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+                                    </td>
+                                    <td><a href="userdelete/{{ user.id }}" class="btn btn-primary inverse btn-sm">
+                                            <img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a></td>
+                                {% endif %}
+                              {% empty %}
+                                <td>No users yet</td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                        </table>
+                    {% endif %}
+                    <hr/>
+                    <a href="/base/register/">Add User</a><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+    </body>
+</html>

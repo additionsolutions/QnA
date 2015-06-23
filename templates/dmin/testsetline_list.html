@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>TestSetLine</title>
+	
+    </head>
+	
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>TestSetLine</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+        <div class="col-sm-10">
+                
+                <div id="resultsarea" class ="col-sm-12">
+			<div id="asection" class ="col-sm-4">
+			   
+			    <h2> </h2>
+			   
+    				{% csrf_token %}
+					
+				<label for="TestSet">TestSet </label>
+				<select class="select form-control" id="testSelect" name="testsetSelect" onchange="gettestsetLine()">
+				{% for testset in test_object_list %}	
+					
+					<option value="{{testset.id}}">{{testset.testname}}</option>
+					
+				{% endfor %}
+				</select>
+				
+    				<br/><br/>
+    				
+			   
+			    
+			    
+			</div>
+			<div id="testsetlinearea" class ="col-sm-8">
+			    
+			    
+			    
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>Content Type</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Content Type</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+
+        {% load staticfiles %}
+	<div class="col-sm-10">
+                
+                <div id="resultsarea" class =col-sm-10">
+			<div id="asection">
+			    <div class="container">
+				  <div class="row">
+				    <div class="col-md-9">
+				    <a class="btn btn-primary" href="{% url "conttype_new" %}">Add Content Type</a>
+				      <br><br>
+				        <table  class="table table-hover" >
+				        <tbody>
+				            <colgroup>
+				                <col class="col-md-2">
+				                <col class="col-md-5">
+				                <col class="col-md-1">
+				                <col class="col-md-1">
+				            </colgroup>
+				          <tr class="info">
+				            <th>Content Type</th>
+				            <th>Description</th>
+				              <th>Edit</th>
+				              <th>Delete</th>
+				          </tr>
+
+				            {% for contenttype in object_list %}
+				                <tr>
+				                    <td>{{ contenttype.name }}</td>
+				                    <td>{{ contenttype.description }}</td>
+				                    <td>
+				                        <a href="{% url "conttype_edit" contenttype.id %}" class="btn btn-primary inverse btn-sm">
+				                            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+				                    </td>
+				                    <td> <a href="{% url "conttype_delete" contenttype.id %}" class="btn btn-primary inverse btn-sm">
+				                            <img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a></td>
+				                    {% empty %}
+				                        No Content Type yet
+				            {% endfor %}
+				            </tr>
+				            </tbody>
+				        </table>
+
+				    </div>
+				  </div>
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

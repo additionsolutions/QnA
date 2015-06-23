@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+<html>
+    <head>
+        <title>Add User</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Users</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+
+        {% load crispy_forms_tags %}
+
+
+        <div id="asection">
+            {% if registered %}
+                Information: <strong>User Added!</strong> <br>
+            {% else %}
+                <strong>Add user:</strong><br /><br />
+                <form class="form-horizontal" method="post" action="/base/register/" >
+                    {% csrf_token %}
+                    <div class="container">
+                        {% crispy user_form %}
+                        {% crispy profile_form %}
+                        <input type="submit" class="btn btn-default" name="submit" value="Add User" />
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    {% endblock %}
+    </body>
+</html>

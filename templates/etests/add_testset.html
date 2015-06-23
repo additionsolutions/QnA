@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+{% load crispy_forms_tags %}
+<html>
+    <head>
+        <title>TestSet</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Edit TestSet</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+        
+        <div id="asection">
+            <a class="btn btn-primary" href="{% url "add_testset" %}">Back to TestSet</a>
+                      <br><br>
+            {% crispy p_form %}
+            <hr/>
+            <p> __________________________________ </p>
+            <hr/>
+            {% for c_form in c_forms %}
+                {% crispy c_form %}
+                <hr/>
+            {% endfor %}
+            
+            
+        </div>
+    {% endblock %}
+    </body>
+</html>
+
+
+{{ tsform }}
+{{ tslforms }}

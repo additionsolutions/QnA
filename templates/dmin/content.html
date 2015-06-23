@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "dmin/base.html" %}
+<html>
+    <head>
+        <title>Content List</title>
+	
+    </head>
+	
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Content List</h3>
+            </div>
+        {% endblock %}
+        <div class="col-sm-2" style="background-color:#eee; height:550px">
+                {% include 'dmin/admin_menu.html' %}
+        </div>
+        <div class="col-sm-10">
+                
+                <div id="resultsarea" class ="col-sm-12">
+			<div id="asection" class ="col-sm-3">
+			   
+			    <h2> </h2>
+			   
+    				{% csrf_token %}
+					
+				<label for="ContentType">Content</label>
+				<select class="select form-control" id="contentTypeSelect" onchange="getContentlist()">
+				{% for content_typ in contenttype_object_list %}	
+					
+					<option value="{{content_typ.id}}">{{content_typ.name}}</option>
+					
+				{% endfor %}
+				</select>
+				
+    				<br/><br/>
+    				
+			   
+			    
+			    
+			</div>
+			<div id="contentarea" class ="col-sm-9">
+			    
+			    
+			    
+			</div>
+		</div>
+	</div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

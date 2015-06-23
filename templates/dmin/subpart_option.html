@@ -1,0 +1,50 @@
+
+{% load staticfiles %}
+
+<a class="btn btn-primary" href="{% url "option_new" %}">Add Option</a>
+<br><br>
+<table  class="table table-hover" >
+<tbody>
+    <colgroup>
+        <col class="col-md-2">
+        <col class="col-md-2">
+	<col class="col-md-2">
+	<col class="col-md-1">
+	<col class="col-md-1">
+
+        
+    </colgroup>
+  <tr class="info">
+    <th>Option</th>
+    <th>SrNo</th>
+    <th>Mark</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+    {% for option_obj in object %}
+        <tr>
+	    {% if option_obj.option != '' %}
+            	<td>{{ option_obj.option }}</td>
+	    {% else %}
+		<td>{{ option_obj.url }}</td>
+	    {% endif %}
+	    <td>{{ option_obj.SrNo }}</td>
+	    <td>{{ option_obj.mark }}</td>
+             <td>
+	            <a href="{% url "option_edit" option_obj.id %}" class="btn btn-primary inverse btn-sm">
+	            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+	    </td>
+            <td>
+	            <a href="{% url "option_delete" option_obj.id %}" class="btn btn-primary inverse btn-sm">
+	            <img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a>
+	    </td>                                 
+            
+
+            {% empty %}
+                No Option yet
+    {% endfor %}
+    </tr>
+    </tbody>
+</table>
+

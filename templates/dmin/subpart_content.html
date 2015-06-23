@@ -1,0 +1,41 @@
+
+{% load staticfiles %}
+<a class="btn btn-primary" href="{% url "cont_new" %}">Add Content</a>
+				      <br/><br/>
+<table  class="table table-hover" >
+<tbody>
+    <colgroup>
+        <col class="col-md-2">
+        <col class="col-md-2">
+        <col class="col-md-5">
+	<col class="col-md-1">
+	<col class="col-md-1">
+        
+    </colgroup>
+  <tr class="info">
+    <th>Content Type</th>
+    <th>Content</th>
+    <th>Data</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+    {% for content_obj in object %}
+        <tr>
+	    <td>{{ content_obj.contenttype }}</td>
+            <td>{{ content_obj.name }}</td>
+            <td>{{ content_obj.data }}</td>
+            <td>
+	            <a href="{% url "cont_edit" content_obj.id %}" class="btn btn-primary inverse btn-sm">
+	            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+	    </td>
+            <td>
+	            <a href="{% url "cont_delete" content_obj.id %}" class="btn btn-primary inverse btn-sm">
+	            <img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a>
+	    </td>
+            {% empty %}
+                No Content yet
+    {% endfor %}
+    </tr>
+    </tbody>
+</table>

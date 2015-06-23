@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    {% load staticfiles %}
+    {% block base_block %}
+            {% include 'base/base.html' %}
+    {% endblock %}
+    
+    <style>
+        #ztext {
+          font-size: 700%;
+        }
+        
+        #ztext_right {
+          font-size: 700%;
+          text-align: right;
+        }
+        
+        .zblank {
+          font-size: 700%;
+          float: left;
+          width: 120px;
+          height: 110px;
+          padding: 10px;
+          padding-top: 2px;
+          padding-bottom: 0;
+          border: 2px dashed #333;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          margin: 0 0 0 0;
+          background: #fff;
+        }
+        
+        .hovered {
+          background: #aaa;
+        }
+        
+        .zans {
+          font-size: 700%;
+          text-align : center;
+          vertical-align: middle;
+          color : blue;
+          float: left;
+          width: 120px;
+          height: 110px;
+          padding: 1px;
+          padding-top: 2px;
+          padding-bottom: 0;
+          border: 2px solid #333;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          margin: 0 0 0 2px;
+          background: #ccc;
+        }
+        
+        .zans p {
+            margin-top: -15px;
+        }
+        
+    </style>
+    
+    <script>
+        $( init );
+ 
+        function init() {
+          $('#zans1').draggable({
+            containment: '#testarea',
+            stack: '#zans1',
+            cursor: 'move',
+            helper: 'clone',
+            revert: true
+            });
+          $('#zans2').draggable({
+            containment: '#testarea',
+            cursor: 'move',
+            helper: 'clone',
+            revert: true
+            });
+          
+          $('#zblank1').droppable({
+            tolerance: "touch",
+            hoverClass: "hovered",
+            accept: '#zans1, #zans2',
+            drop: handleAnsDrop
+            });
+          
+        }
+     
+        function handleAnsDrop( event, ui ) {
+            // write some logic here
+            ui.draggable.draggable( 'disable' );
+            $(this).droppable( 'disable' );
+            ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+            ui.draggable.draggable( 'option', 'revert', false );
+        }
+        
+    </script>
+
+</head>
+
+<body >
+  
+    <header>
+
+        {% block navbar_block %}
+            <p2 style="color:white"><a href="/base/profile"><p2 style="color:white">Prosperidad</p2></a> : English Test </p2>
+        {% endblock %}
+
+    </header>
+
+    <div id="testarea" style="background-image: url({% static "img/bg_english.png" %}); height: 620px; width: 1348px; border: 1px solid black;" >   
+        <div class="rows">
+            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+            <div class="col-sm-4" ><p1 style="font-size:40px; color:purple;">Missing Alphabet</p1></div>
+            <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+            <div class="col-sm-12" ><hr/></div>
+        </div>  
+        
+        <div class="rows">
+            <div id="img" class="col-sm-1">.</div>
+            <div id="img" class="col-sm-1">
+                image
+            </div>
+            <div id="ztext_right" class="col-sm-4">
+                A hen is
+            </div>
+            <div id="zblank1" class="zblank col-sm-2">
+              
+            </div>
+            <div id="ztext" class="col-sm-4">
+                the hut
+            </div>
+        </div> 
+        <div class="col-sm-12" ><hr/></div>
+        <div class="rows">       
+            <div id="img" class="col-sm-4">.</div>
+            <div id="zans1" class="zans col-sm-2">
+              <p>on<p>
+            </div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            
+            <div id="zans2" class="zans col-sm-2">
+              <p>in</p>
+            </div>
+        </div>  
+
+    </div>
+        
+    <footer>
+        {% block footer_block %}
+            {% include 'base/footer.html' %}
+        {% endblock %}
+    </footer>
+
+    {% block basefoot_block %}
+        {% include 'base/basefoot.html' %}
+    {% endblock %}
+
+</body>
+
+</html>

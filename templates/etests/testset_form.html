@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+<html>
+    <head>
+        <title>TestSet</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Edit TestSet</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+        
+        <div id="asection">
+            <a class="btn btn-primary" href="{% url "testset" %}">Back to TestSet</a>
+                      <br><br>
+            
+        {% include "contents/form_snippet_floppy.html" %}
+            
+            
+        </div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

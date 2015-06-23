@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+ {% extends 'etests/odd_one_out.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block odd_one_out_test %}
+
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>pen</button></div>           
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(1)";>tap</button></div>
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>men</button></div>
+            <div class="circle col-sm-3">
+            <button class="circle" onclick="marks(0)";>hen</button></div>
+            
+            <div class="col-sm-12" >.</div>
+            <div class="col-sm-12" >.</div>
+            <div class="col-sm-3" ></div>
+            <div id="ans_area" class="col-sm-3" h3>
+
+            </div>     
+    {% endblock %}
+
+</body>
+
+</html>

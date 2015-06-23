@@ -1,0 +1,38 @@
+{% include testsetline %}
+{% load staticfiles %}
+<div class="container">
+<div class="rows">
+{% if record == 'final' %}
+<div class="col-sm-12">
+      
+      <button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+      <div class="col-sm-4" ><image src="{% static "img/submit.png" %}" height="100px" width="100px" onclick="navigate(0)"  id="submit" /></div>
+</div>
+{% endif %}
+{% if record == 'last' %}
+<div class="col-sm-12">
+      <div class="col-sm-4" >
+      	<image src="{% static "img/previous.png" %}" height="100px" width="100px" onclick="navigate(1)" name="Previous" id="prev" />
+      </div>
+      <button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+      <div class="col-sm-4" ><image src="{% static "img/submit.png" %}" height="100px" width="100px" onclick="navigate(0)"  id="submit" /></div>
+</div>
+{% endif %}
+
+{% if record == 'first' %}
+<div class="col-sm-12">
+    <button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+    <div class="col-sm-4" ><image src="{% static "img/next.png" %}" height="100px" width="100px" onclick="navigate(2)" name="Next" id="next" /></div>
+    <button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+</div>
+{% endif %}
+
+{% if record == 'normal' %}
+<div class="col-sm-12">
+  <div class="col-sm-4" ><image src="{% static "img/previous.png" %}" height="100px" width="100px" onclick="navigate(1)" name="Previous" id="prev" /></div>
+	<button class="col-sm-3 btn btn-large btn-primary" type="button" style="visibility:hidden">hide_me</button>
+  <div class="col-sm-4" ><image src="{% static "img/next.png" %}" height="100px" width="100px" onclick="navigate(2)" name="Next" id="next" /></div>
+</div>
+{% endif %}
+</div>
+</div>

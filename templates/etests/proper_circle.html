@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    {% load staticfiles %}
+    
+   
+<style>   
+    .circle {
+        cursor:url({% static "img/blue_circle.png" %}), auto;
+        font-size:120px; 
+        margin-top:20px; 
+        background-color:transparent; 
+        color:red; 
+        border:none;
+        #visibility:hidden;
+    }
+       
+    p1 {
+        font-size: 300%
+    }       
+    
+    .parent{
+	background:url({% static "img/circle_background.png" %});
+        width:100%;
+	min-height:500px;
+        position:relative;
+        border:1px solid black;
+    }
+    .parent:after{
+        content:'';
+        
+        
+        position:absolute;
+        top:0;
+        left:0;
+        opacity:0.7;
+    }
+    .child{
+        position:relative;
+        z-index:1;
+    }
+
+</style>
+</head>
+
+<body >
+       
+    <audio id="success" src="{% static "audio/applause.mp3" %}" preload="auto" autobuffer>
+    </audio>
+    <audio id="wrong" src="{% static "audio/error.mp3" %}" preload="auto" autobuffer>
+    </audio>
+    
+    
+    <div class="parent">  
+
+            <div class="child rows">
+                    <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+                    <div class="col-sm-4" ><p1 style="font-size:40px; color:purple;">Circle Proper Word</p1></div>
+                    <div class="col-sm-4" ><p1 style="font-size:30px; color:red;"></div>
+                    <div class="col-sm-12" ><hr/></div>
+                    
+                    
+                    {% block circle_test %}
+                        
+                            Circle test
+                        
+                    {% endblock %}
+                   
+            </div>
+    </div>    
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+
+{% load staticfiles %}
+<a class="btn btn-primary" href="{% url "testsetline_new" %}">Add TestSet Line</a>
+<br><br>
+<table  class="table table-hover" >
+<tbody>
+    <colgroup>
+        <col class="col-md-2">
+	<col class="col-md-2">
+        <col class="col-md-4">
+	<col class="col-md-1">
+	
+        
+    </colgroup>
+  <tr class="info">
+    <th>File Name</th>
+    <th>SrNo</th>
+    <th>Test Set</th>
+    <th>Edit</th>
+  
+  </tr>
+
+    {% for testsetline_obj in object %}
+        <tr>
+	    
+            {% if testsetline_obj.filename != '' %}
+            	<td>{{ testsetline_obj.filename }}</td>
+		<td>{{ testsetline_obj.srno }}</td>
+	    	<td>{{ testsetline_obj.testset }}</td>
+	    {% else %}
+		<td>{{ testsetline_obj.question }}</td>
+		<td>{{ testsetline_obj.srno }}</td>
+	    	<td>{{ testsetline_obj.testset }}</td>
+            {% endif %}              
+	    
+	    	<td>
+	            <a href="{% url "testsetline_edit" testsetline_obj.id %}" class="btn btn-primary inverse btn-sm">
+	            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+	        </td>
+	    
+            {% empty %}
+                No TestSetLine yet
+    {% endfor %}
+    </tr>
+    </tbody>
+</table>
+

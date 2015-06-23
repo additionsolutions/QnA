@@ -1,0 +1,24 @@
+
+<h2> Total marks of <b>{{ user_name }} </b>per Test</h2>
+			    
+<table  class="table table-hover" >
+<tbody>
+    <colgroup>
+	<col class="col-md-4">
+	<col class="col-md-2">
+
+    </colgroup>
+  <tr class="info">
+    <th>Testset</th>
+    <th>Total</th>
+
+  </tr>
+    {% for obj in testset_objs %}
+	  <tr>
+	    <td>{{ obj.testname }}</td>
+        <td> {{ obj.marks_total }} </td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+

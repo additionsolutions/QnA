@@ -1,0 +1,71 @@
+<!doctype html>
+
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    {% load staticfiles %}
+    {% block base_block %}
+            {% include 'base/base.html' %}
+    {% endblock %}
+    
+</head>
+
+<body>
+   
+    <header>
+
+        {% block navbar_block %}
+            {% include 'base/navbar.html' %}
+        {% endblock %}
+        <div class="container">
+        <menu>
+            
+        </menu>
+        </div>
+    </header>
+
+
+    <div class="wrapper">
+
+        <section id="support" class="doublediagonal">
+            <div class="container">
+
+                    {% block mainbody_block %}
+                    <h1>EXCELENCIA</h1>
+                    <br/>
+                    <h3>(Skills development Centre)</h3><br/><br/>
+                    We believe children are little scientist. They are eager to figure out how everything works. They love to do through experiments.  Unlike adults, their dreams have no ceiling. It’s inspiring to listen to their goals and ideas.<br/> 
+                    Children start dreaming at an early age. They think about their future career, their wealth, their education, and so on. And their dreams can be huge.<br/>
+                    Here we try to develop their skills with play way method which will lead to their dreams. One important key to success is self-confidence. An important key to self-confidence is preparation. We work for preparation towards big goals.<br/> <br/> <br/> 
+                    Courses<br/> <br/> 
+                    Level “0”<br/> 
+                    Level “1”<br/> <br/> 
+
+                    Level 0:-  The toddler years are a time of great cognitive, emotional and social development. The word is derived from "to toddle", which means to walk unsteadily, like a child of this age. Toddler development can be broken down into a number of areas. We program all the schedules accordingly toddler’s requirement. <br/> <br/> 
+                     
+                    Level 1:-  <br/> 
+ 
+
+                    {% endblock %}
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        {% block footer_block %}
+            {% include 'base/footer.html' %}
+        {% endblock %}
+    </footer>
+
+    {% block basefoot_block %}
+        {% include 'base/basefoot.html' %}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ {% extends 'etests/word_train.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block word_train_test %}
+            
+            <div id="zans3" class="zans col-sm-2"><p>pan<p></div>            	    
+            <div id="zblank1" class="zblank col-sm-2"></div>
+            <div id="zblank2" class="zblank col-sm-2"></div>
+            
+            <div class="col-sm-12" >.</div>
+
+          
+            <div class="col-sm-12" ><hr/></div>
+           
+            
+            <div id="zans0" class="zans col-sm-2"><p>nut<p></div>
+            <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans1" class="zans col-sm-2"><p>den</p></div>
+	    <div id="ztext_right" class="col-sm-1">/</div>
+            <div id="zans2" class="zans col-sm-2"><p>ten</p></div>
+
+            <div id="ans_area" class="col-sm-3" h3></div>
+            
+    {% endblock %}
+
+</body>
+
+</html>

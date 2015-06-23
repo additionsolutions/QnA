@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends "base/profile_admin.html" %}
+<html>
+    <head>
+        <title>Content</title>
+    </head>
+
+    <body>
+    {% block mainbody_block %}
+        {% block heading_block %}
+            <div id="aheader">
+                <h3>Content</h3>
+            </div>
+        {% endblock %}
+        {% include "base/admin_menu.html" %}
+
+        {% load staticfiles %}
+
+        <div id="asection">
+            <div class="container">
+                  <div class="row">
+                    <div class="col-md-9">
+                    <a class="btn btn-primary" href="{% url "content_new" %}">Add Content</a>
+                      <br><br>
+                        <table  class="table table-hover" >
+                        <tbody>
+                            <colgroup>
+                                <col class="col-md-2">
+                                <col class="col-md-5">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                            </colgroup>
+                          <tr class="info">
+                            <th>Content</th>
+                            <th>Data</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                          </tr>
+
+                            {% for content in object_list %}
+                                <tr>
+                                    <td>{{ content.name }}</td>
+                                    <td>{{ content.data }}</td>
+                                    <td>
+                                        <a href="{% url "content_edit" content.id %}">edit
+                                            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
+                                    </td>
+                                    <td> <a href="{% url "content_delete" content.id %}">delete
+                                            <img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a></td>
+                                    {% empty %}
+                                        No Content yet
+                            {% endfor %}
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                  </div>
+        </div>
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+ {% extends 'etests/proper_circle.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block circle_test %}
+            <div class="col-sm-3">
+            <img src={% static "img/fish.png" %} width=250px height=240px/></div>
+            
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(0)";>dish</button></div>
+            <div class="circle col-sm-3" >
+            <button class="circle" onclick="marks(1)";>fish</button></div>
+            <div class="circle col-sm-3">
+            <button class="circle" onclick="marks(0)";>wish</button></div>
+            
+            <div class="col-sm-3" ></div>
+            <div id="ans_area" class="col-sm-3" h3>
+
+            </div>       
+    {% endblock %}
+
+</body>
+
+</html>

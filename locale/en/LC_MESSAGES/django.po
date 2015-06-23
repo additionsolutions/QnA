@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-22 22:51+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\qna\settings.py:96
+msgid "Marathi"
+msgstr ""
+
+#: .\qna\settings.py:97
+msgid "English"
+msgstr ""
+
+#: .\qna\settings.py:98
+msgid "Hindi"
+msgstr ""
+
+#: .\qna\settings.py:99
+msgid "Gujrati"
+msgstr ""
+
+#: .\templates\base\index.html:88
+msgid "Programs"
+msgstr ""
+
+#: .\templates\base\index.html:90
+msgid "Parents"
+msgstr ""
+
+#: .\templates\base\index.html:92
+msgid "Photos"
+msgstr ""
+
+#: .\templates\base\index.html:94
+msgid "Know More"
+msgstr ""
+
+#: .\templates\base\index.html:98
+msgid "My Page"
+msgstr ""
+
+#: .\templates\base\index.html:103
+msgid "Logout"
+msgstr ""
+
+#: .\templates\base\index.html:105 .\templates\base\index.html.py:166
+msgid "Login"
+msgstr ""
+
+#: .\templates\base\index.html:108
+msgid "Contact"
+msgstr ""
+
+#: .\templates\base\index.html:153 .\templates\base\index.html.py:233
+msgid "Excelencia"
+msgstr ""
+
+#: .\templates\base\index.html:159
+msgid "Skills Development Center"
+msgstr ""
+
+#: .\templates\base\index.html:163
+msgid "LEARN MORE"
+msgstr ""
+
+#: .\templates\base\index.html:228 .\templates\base\index.html.py:243
+msgid "About Us"
+msgstr ""
+
+#: .\templates\base\index.html:236
+msgid "Aim"
+msgstr ""
+
+#: .\templates\base\index.html:239
+msgid "We believe children are little scientist."
+msgstr ""
+
+#: .\templates\base\index.html:239
+msgid "A successful academic journey with excellence attitude."
+msgstr ""
+
+#: .\templates\base\index.html:239
+msgid ""
+"Here we try to develop their skills with play way method which will lead to "
+"their dreams."
+msgstr ""
+
+#: .\templates\base\profile.html:48
+msgid "Photographs"
+msgstr ""
+
+#: .\templates\base\profile.html:59
+msgid "Welcome to Excelencia"
+msgstr ""
+
+#: .\templates\base\profile.html:68
+msgid "First Name"
+msgstr ""
+
+#: .\templates\base\profile.html:69
+msgid "Last Name"
+msgstr ""
+
+#: .\templates\base\profile.html:70
+msgid "Mother"
+msgstr ""
+
+#: .\templates\base\profile.html:71
+msgid "Father"
+msgstr ""
+
+#: .\templates\base\profile.html:72
+msgid "Mobile"
+msgstr ""

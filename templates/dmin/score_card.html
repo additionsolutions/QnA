@@ -1,0 +1,32 @@
+
+<h4> Marks of <b>{{ user_name }} </b>for testset <b>{{ testset_name }}</b></h4>
+
+<table  class="table table-hover" >
+<tbody>
+    <colgroup>
+	<col class="col-md-4">
+	<col class="col-md-2">
+
+    </colgroup>
+  <tr class="info">
+    <th>Question</th>
+    <th>Marks</th>
+
+  </tr>
+    {% for marks_obj in object %}
+	{% if marks_obj.user != 0 %}
+	  <tr>
+	    <td>{{ marks_obj.question }}</td>
+	    <td>{{ marks_obj.marks }}</td>
+	  </tr>
+	{% endif %}
+      {% empty %}
+	<tr>
+	<td>Test not attempted yet</td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+<hr/>
+<hr/>
+<h2> Total marks are: {{ total }} </h2>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+ {% extends 'etests/match_following.html' %}
+
+<head>
+    {% load staticfiles %}
+    
+</head>
+
+<body >
+       
+    {% block match_following_test %}
+            <div class="col-sm-12" >      
+            	<div id="zans0" class="zans col-sm-4"><p>tag</p></div>
+		<div class="col-sm-2">
+            		<img src={% static "img/hut.jpg" %} width=130px height=130px/>
+		</div>
+	    	<div id="zblank1" class="zblank col-sm-3"></div>	
+	    </div>    
+	    
+            <div class="col-sm-12" >      
+            	<div id="zans1" class="zans col-sm-3"><p>bed</p></div>
+		<div class="col-sm-2">
+            		<img src={% static "img/hut.jpg" %} width=130px height=130px/>
+		</div>
+	    	<div id="zblank2" class="zblank col-sm-3"></div>	
+	    </div>  
+	    
+            <div class="col-sm-12" >      
+            	<div id="zans2" class="zans col-sm-3"><p>hut</p></div>
+		<div class="col-sm-2">
+            		<img src={% static "img/hut.jpg" %} width=130px height=130px/>
+		</div>
+	    	<div id="zblank3" class="zblank col-sm-3"></div>	
+	    </div>    
+            <div class="col-sm-12" >      
+            	<div id="zans3" class="zans col-sm-3"><p>dog</p></div>
+		<div class="col-sm-2">
+            		<img src={% static "img/hut.jpg" %} width=100px height=100px/>
+		</div>
+	    	<div id="zblank4" class="zblank col-sm-3"></div>	
+	    </div>    
+	    <div class="col-sm-12" >      
+            	<div id="zans4" class="zans col-sm-3"><p>pin</p></div>
+		<div class="col-sm-2">
+            		<img src={% static "img/hut.jpg" %} width=100px height=100px/>
+		</div>
+	    	<div id="zblank5" class="zblank col-sm-3"></div>	
+	    </div>    
+
+            
+            <div class="col-sm-12" ><hr/></div>
+           
+            <div id="ans_area" class="col-sm-2" h3></div>
+            
+    {% endblock %}
+
+</body>
+
+</html>

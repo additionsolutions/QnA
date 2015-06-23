@@ -1,0 +1,7 @@
+{% if testlist.count > 0 %}  
+    {% for test in testlist %}
+        <li class="list-group-item"> <a href='/t/etest/{{ test.id}}'>{{ test.testname }} </a>    <br/>{{ test.description }} <br/><h5> <i>{{test.startdate}} to {{test.enddate}} </i></h5> </a></li>
+    {% endfor %}
+{% else %}
+    <li class="list-group-item"> No data to show</li>
+{% endif %}
