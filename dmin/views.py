@@ -269,24 +269,32 @@ def content_create(request, template_name='dmin/content_form.html'):
     form = ContentForm(request.POST or None, initial={'createdby': request.user})
     form.fields['createdby'] = ModelChoiceField(label="", widget=HiddenInput(attrs={'value':request.user}), queryset=User.objects.all())
     if form.is_valid():
-        form.save()
+        content = form.save(commit=False)
+        if 'picture' in request.FILES:
+            content.picture = request.FILES['picture']
+			
+        content.save()
         return redirect('getcontentfromcontettype')
     return render(request, template_name, {'form':form})
 
 
 def content_update(request, pk, template_name='dmin/content_form.html'):
     content = get_object_or_404(Content, pk=pk)
-    form = ContentForm(request.POST or None, instance=content)
-    if form.is_valid():
-        form.save()
+    content_form = ContentForm(request.POST or None, request.FILES or None, instance=content)
+    if content_form.is_valid():
+        content_pic = content_form.save(commit=False)
+        if 'picture' in request.FILES:
+             content_pic.picture = request.FILES['picture']
+
+        content_pic.save()
         return redirect('getcontentfromcontettype')
-    return render(request, template_name, {'form':form})
+    return render(request, template_name, {'form':content_form})
 
 
 def content_delete(request, pk, template_name='dmin/content_form_delete.html'):
     content = get_object_or_404(Content, pk=pk)
     if request.method=='POST':        
-	content.delete()
+        content.delete()
         return redirect('getcontentfromcontettype')
     return render(request, template_name, {'object':content})
 
@@ -372,6 +380,13 @@ def testsetline_update(request, pk, template_name='dmin/testsetline_form.html'):
         return redirect('gettestsetlinefromtestset')
     return render(request, template_name, {'form':form})
 
+def testsetline_delete(request, pk, template_name='dmin/testsetline_form_delete.html'):
+    testsetline = get_object_or_404(TestSetLine, pk=pk)
+    if request.method=='POST':
+        testsetline.delete()
+        return redirect('gettestsetlinefromtestset')
+    return render(request, template_name, {'object':testsetline})	
+	
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required(login_url='/a/dmin/login')
 def gettestsetlinefromtestset(request, template_name='dmin/testsetline_list.html'):

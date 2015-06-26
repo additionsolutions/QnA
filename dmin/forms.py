@@ -27,8 +27,6 @@ class GroupForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-	password = forms.CharField(widget=forms.PasswordInput())
-	confirm_password = forms.CharField(widget=forms.PasswordInput())
 	helper = FormHelper()
 	helper.form_tag = False
 	helper.form_method = 'POST'
@@ -40,25 +38,12 @@ class UserForm(forms.ModelForm):
 			Field('first_name', css_class='input-sm'),
 			Field('last_name', css_class='input-sm'),
 			Field('email', css_class='input-sm'),
-			Field('password', css_class='password'),
-			Field('confirm_password', css_class='password'),
 			Field('groups', css_class='input-sm'),
 			#FormActions(Submit('Submit', 'Submit', css_class='btn-primary'))
 			)
 	class Meta:
 		model = User
-		fields = ('username', 'first_name', 'last_name', 'email', 'password','groups')
-
-	def clean(self):
-
-		if (self.cleaned_data.get('password') !=
-            		self.cleaned_data.get('confirm_password')):
-
-            		raise ValidationError(
-                		"Passwords must match."
-            		)
-
-        	return self.cleaned_data
+		fields = ('username', 'first_name', 'last_name', 'email','groups')
 
 
 class UserProfileForm(forms.ModelForm):
