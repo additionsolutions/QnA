@@ -75,7 +75,6 @@ def testlist(request):
 
     if request.method == 'GET':
         testlist = TestSet.objects.filter(groups=request.user.groups.all(),submit_flag=False,startdate__lte=current_date,enddate__gte=current_date)
-	
         
     return render_to_response('etests/testlist.html', {'testlist': testlist }, context)
 
@@ -101,7 +100,7 @@ def etestsr(request, action):
             action = int(action)
         except ValueError:
             raise Http404()
-            
+
     record = "normal"   
     # # Find a First and Last questions
     Record_obj = TestSetLine.objects.filter(testset=request.session['testno'])
@@ -109,30 +108,23 @@ def etestsr(request, action):
     # # Calculates the maximum and minimum out of the already-retrieved objects
     last = Record_obj.aggregate(Max('srno'))
     first = Record_obj.aggregate(Min('srno'))   
-    
-    #print 'last---',last
-    #print 'first---',first
 
+    ### ??? Is this line redundant ??? 
     obj_testset = TestSet.objects.get(id=request.session['testno'])           
-    
- 
+    heading = str(obj_testset.testname)
+
     if action == 2: # Next
         sr = request.session['qno'] + 1
-	request.session['no_ans'] = obj_testset.no_ans
-	
+    ### ??? Is this line redundant ??? 
+    request.session['no_ans'] = obj_testset.no_ans  
     if action == 1: # Previous
         sr = request.session['qno'] - 1
-	request.session['no_ans'] = obj_testset.no_ans
+    request.session['no_ans'] = obj_testset.no_ans
     if action == 0: # Submit
-	#print '----inside submit condition----'
-	obj_testset = TestSet.objects.get(id=request.session['testno'])
-	#print '---default flag----',obj_testset.submit_flag
-	obj_testset.submit_flag = True
-	obj_testset.save()
+        obj_testset = TestSet.objects.get(id=request.session['testno'])
+        obj_testset.submit_flag = True
+        obj_testset.save()
         return redirect('/base/profile')
-	#return render(request,'base/profile.html')
-
-
 
     # find out if first or last record
     if sr == last['srno__max']:
@@ -142,34 +134,22 @@ def etestsr(request, action):
         record = "first"
     
     if last['srno__max'] == first['srno__min']:
-	record = "final"
+        record = "final"
     
-    request.session['qno'] = sr
-
+    request.session['qno'] = sr         
     file_name = str((TestSetLine.objects.get(Q(srno=sr), Q(testset=request.session['testno']))).filename)
-    #print '----file name-----',file_name
+
     if file_name != '':
-    	testsetline = "etests/" + file_name
+        testsetline = "etests/" + file_name
         return render(request, 'etests/test_area.html', {'testsetline':testsetline,'record':record})
-    
     else:
-	q_obj = TestSetLine.objects.filter(testset=request.session['testno'],srno=sr)
-    
-	for obj in q_obj:
-		question_list = TestQuestion.objects.get(test_question=obj)
-		#print '---question_list---',question_list
-		option_obj = Option.objects.filter(t_question=question_list)
-		#print '---question_list---',option_obj
-		return render(request, 'dmin/radio_test.html', { 'option_obj': option_obj,'question_list':question_list,'record':record})
+        q_obj = TestSetLine.objects.filter(testset=request.session['testno'],srno=sr)
+        for obj in q_obj:
+            question_list = TestQuestion.objects.get(test_question=obj)
+            option_obj = Option.objects.filter(t_question=question_list)
+        return render(request, 'etests/sub_obj_test.html', { 'option_obj': option_obj,'question_list':question_list, 'heading':heading, 'record':record})
 
-	#print '-----testsetline-----',testsetline
-	return render(request, 'etests/test_area.html', {'testsetline':testsetline,'record':record})
-
-   
-    
-    
-    
-    
+    #return render(request, 'etests/test_area.html', {'testsetline':testsetline,'record':record})
 
 
 ## Evaluate and give marks
@@ -181,31 +161,24 @@ def etestans(request, ans):
             raise Http404()
             
     q = TestSetLine.objects.get(Q(srno=request.session['qno']), Q(testset=request.session['testno']))
-
-    #print '-----no_ans-----',request.session['no_ans']
-
     request.session['no_ans'] = request.session['no_ans']-1
-    #print '-----after decrement-----',request.session['no_ans']   
-
+    print "---#######------",q
     if request.session['no_ans'] == 0:
+        try:
+            ansr = Answer.objects.get(question=q, user=request.user)
+        except Answer.DoesNotExist:
+            ansr = Answer.objects.create(marks=ans, question=q, user=request.user)
+        else:
+            ansr.marks = ans
+            ansr.user = request.user
 
-	    try:
-		ansr = Answer.objects.get(question=q)
-		#print '------if block------',ansr
-	    except Answer.DoesNotExist:
-		ansr = Answer.objects.create(marks=ans, question=q, user=request.user)
-	    else:
-		ansr.marks = ans
-		ansr.user = request.user
-
-	    ansr.save()
-	    # Answer.objects.all().delete()            
-	    
-	    answer = "Answer recorded"
+        ansr.save()
+        # Answer.objects.all().delete()            
+        
+        answer = "Answer recorded"
     else:
-            answer = "Answer is not complete"
-	    #print '-----else part-----',request.session['no_ans']
-    	    
+        answer = "Answer is not complete"
+        
     return render(request, 'etests/ans_area.html', { 'answer': answer })
     
 ######################################
@@ -229,3 +202,18 @@ def add_testset(request):
         tsform = TestSetForm(instance=TestSet())
         tslforms = [TestSetLineForm(prefix=str(x), instance=TestSetLine()) for x in range(0,3)]
     return render_to_response('etests/add_testset.html', {'p_form': tsform, 'c_forms': tslforms})
+
+    
+    
+# Use the login_required() decorator to ensure only those logged in can access the view.
+@login_required(login_url='/a/dmin/login')
+## Start with first question  
+def qetest(request, testset):
+    testset_obj = TestSet.objects.get(id=testset)
+    request.session['testno'] = testset
+    request.session['qno'] = 0
+    request.session['no_ans'] = testset_obj.no_ans
+    if testset_obj.submit_flag:
+        return render(request, 'etests/message.html', { 'message': "Test is already submitted" })
+    else:
+        return render(request, 'etests/etest.html', { 'testset': testset_obj })

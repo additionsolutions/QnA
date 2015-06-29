@@ -19,14 +19,16 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('marks', models.IntegerField()),
+                ('answer', models.TextField(null=True, blank=True)),
             ],
         ),
         migrations.CreateModel(
             name='Category',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=200)),
+                ('name', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=250, null=True, blank=True)),
+                ('answer_type', models.CharField(default=b'SL', max_length=2, choices=[(b'RD', b'Radio'), (b'SL', b'Single Line'), (b'ML', b'Multiple Lines'), (b'CK', b'Checkboxes')])),
             ],
         ),
         migrations.CreateModel(
@@ -34,8 +36,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('option', models.CharField(max_length=200, null=True, blank=True)),
-                ('SrNo', models.CharField(max_length=100)),
-                ('mark', models.IntegerField()),
+                ('srno', models.CharField(default=1, max_length=10)),
+                ('mark', models.IntegerField(default=1)),
                 ('url', models.URLField(null=True, blank=True)),
             ],
         ),
@@ -43,9 +45,10 @@ class Migration(migrations.Migration):
             name='TestQuestion',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('preamble', models.CharField(max_length=200, null=True, blank=True)),
                 ('test_question', models.CharField(max_length=500)),
                 ('duration', models.IntegerField(null=True, blank=True)),
+                ('tqno_ans', models.IntegerField(default=1)),
+                ('tqmarks', models.IntegerField(default=1)),
                 ('url', models.URLField(null=True, blank=True)),
                 ('category', models.ForeignKey(to='etests.Category', on_delete=django.db.models.deletion.PROTECT)),
             ],
@@ -55,8 +58,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('code', models.CharField(unique=True, max_length=100)),
-                ('testname', models.CharField(max_length=100)),
-                ('description', models.CharField(max_length=300, null=True, blank=True)),
+                ('testname', models.CharField(max_length=200)),
+                ('description', models.TextField(null=True, blank=True)),
                 ('no_ans', models.IntegerField(default=1)),
                 ('startdate', models.DateField()),
                 ('enddate', models.DateField()),
@@ -70,8 +73,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('filename', models.CharField(max_length=250, null=True, blank=True)),
                 ('srno', models.IntegerField()),
-                ('name', models.CharField(max_length=50, null=True, blank=True)),
-                ('description', models.CharField(max_length=200, null=True, blank=True)),
+                ('name', models.CharField(max_length=100, null=True, blank=True)),
+                ('description', models.TextField(null=True, blank=True)),
                 ('question', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, blank=True, to='etests.TestQuestion', null=True)),
                 ('testset', models.ForeignKey(to='etests.TestSet', on_delete=django.db.models.deletion.PROTECT)),
             ],
@@ -84,7 +87,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='question',
-            field=models.ForeignKey(to='etests.TestSetLine', on_delete=django.db.models.deletion.PROTECT),
+            field=models.ForeignKey(to='etests.TestQuestion', on_delete=django.db.models.deletion.PROTECT),
         ),
         migrations.AddField(
             model_name='answer',
@@ -97,6 +100,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='option',
-            unique_together=set([('t_question', 'SrNo')]),
+            unique_together=set([('t_question', 'srno')]),
         ),
     ]

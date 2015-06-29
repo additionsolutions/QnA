@@ -3,6 +3,10 @@ $(document).ready(function(){
                $('#notice').html(data);
            });
            
+    $.get('/p/ptest/examlist', function(data){
+               $('#exam').html(data);
+           });
+           
     $.get('/t/etest/testlist', function(data){
                $('#tests').html(data);
            });
@@ -20,12 +24,18 @@ $(document).ready(function(){
            });
     
     $('#start').click(function(){
-        var test_action;
-	
+        //var test_action;
         action = $(this).attr("test-action");
-	// alert(action);
         $.get('/t/etest/sr/' + action, function(data){
-                    // alert(data);
+                   $('#test_area').html(data);
+                   $('#start').hide();
+               });
+    });
+    
+    $('#pstart').click(function(){
+        //var test_action;
+        action = $(this).attr("test-action");
+        $.get('/p/ptest/sr/' + action, function(data){
                    $('#test_area').html(data);
                    $('#start').hide();
                });
@@ -38,23 +48,30 @@ function navigate(test_action)
 {
     if(test_action == 0)
     {
-	alert("Test Submitted Successfully");
+        alert("Test Submitted Successfully");
     }
     var scriptUrl = "/t/etest/sr/" + test_action;
     var msg=getURL(scriptUrl);
     $('#test_area').html(msg);
 }
 
+function pnavigate(test_action)
+{
+    if(test_action == 0)
+    {
+        alert("Test Submitted Successfully");
+    }
+    var scriptUrl = "/p/ptest/sr/" + test_action;
+    var msg=getURL(scriptUrl);
+    $('#test_area').html(msg);
+}
 
 // Record Marks
 function marks( ans )
 {
-    //example use
-    
     var scriptUrl = "/t/etest/ans/" + ans;
     var msg=getURL(scriptUrl);
     $('#ans_area').html(msg);
- 
 }
 
 

@@ -107,7 +107,6 @@ class TestQuestionForm(forms.ModelForm):
 	helper.label_class = 'col-sm-5'
 	helper.field_class = 'col-sm-7'
 	helper.layout = Layout(
-			Field('preamble', ),
 			Field('test_question', ),
 			Field('duration',),
 			Field('category'),
@@ -117,8 +116,7 @@ class TestQuestionForm(forms.ModelForm):
 
     	class Meta:
         	model = TestQuestion
-		fields = ('preamble',
-                  	'test_question',
+		fields = ('test_question',
 		  	'duration',
 			'category',
 		  	'url')
@@ -133,7 +131,7 @@ class OptionForm(forms.ModelForm):
 	helper.layout = Layout(
 			Field('option', ),
 			Field('t_question', ),
-			Field('SrNo',),
+			Field('srno',),
 			Field('mark'),
 			Field('url',),
 			FormActions(Submit('Submit', 'Submit', css_class='btn-primary'))
@@ -143,7 +141,7 @@ class OptionForm(forms.ModelForm):
         	model = Option
 		fields = ('option',
                   	't_question',
-		  	'SrNo',
+		  	'srno',
 			'mark',
 		  	'url')
     

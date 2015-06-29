@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'contents',
     'etests',
     'messaging',
+    'ptest',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -127,6 +128,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     TEMPLATE_PATH,
+    'apptemplates.Loader',
+    
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

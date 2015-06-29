@@ -47,6 +47,19 @@ function getResult()
            });
 }
 
+// Code for Grading
+function getExam()
+{
+	var usrid = document.getElementById("usrSelect").value;
+	var testid = document.getElementById("testSelect").value;
+	//alert (usrid);
+	//alert (testid);
+	$.get('/p/ptest/gradeit/' + usrid + '/' + testid, function(data){
+               $('#userreport').html(data);
+           });
+}
+
+
 // Code for list of Tessetline
 function gettestsetLine()
 {

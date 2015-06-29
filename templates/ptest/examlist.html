@@ -1,0 +1,7 @@
+{% if examlist.count > 0 %}  
+    {% for exam in examlist %}
+        <li class="list-group-item"> <a href='/p/ptest/{{ exam.id }}'>{{ exam.testsetname }} </a>    <br/>{{ exam.description }} <br/><h5> <i>{{exam.startdate}} to {{exam.enddate}} </i></h5> </a></li>
+    {% endfor %}
+{% else %}
+    <li class="list-group-item"> No data to show</li>
+{% endif %}

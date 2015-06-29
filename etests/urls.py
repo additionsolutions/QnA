@@ -15,4 +15,5 @@ urlpatterns = patterns('',
         url(r'^etest/sr/(\d{1,2})/$', views.etestsr, name='etestsr'),
         url(r'^etest/ans/(\d{1,2})/$', views.etestans, name='etestans'),
         url(r'^etest/add/$', views.add_testset, name='add_testset'),
+        url(r'^etest/q/(\d{1,2})/$', views.qetest, name='qetest'),
         )
