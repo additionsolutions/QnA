@@ -20,4 +20,6 @@ urlpatterns = patterns('',
     url(r'^$', include('base.urls')),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+	url(r'^accounts/password_change/$','django.contrib.auth.views.password_change',{'post_change_redirect' : '/accounts/password_change/done/'}, name="password_change"), 
+	url(r'^accounts/password_change/done/$', 'django.contrib.auth.views.password_change_done'),
 )

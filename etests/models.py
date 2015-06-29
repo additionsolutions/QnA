@@ -100,22 +100,5 @@ class Answer(models.Model):
     def __unicode__(self):
         return unicode(self.question)
 
-
-# Define Options for each questions
-class Option(models.Model):
-    option = models.CharField(max_length=200, blank=True, null=True)
-    t_question = models.ForeignKey(TestQuestion, on_delete=models.PROTECT)
-    SrNo = models.CharField(max_length=100, blank=False, null=False)
-    mark = models.IntegerField( null=False, blank=False)
-    url = models.URLField(blank=True, null=True)
-
-    class Meta:
-        unique_together = (('t_question', 'SrNo'),)
-
-    def __unicode__(self):
-	if self.option == '':
-		return self.url
-	else:
-		return self.option
-     
+        
     

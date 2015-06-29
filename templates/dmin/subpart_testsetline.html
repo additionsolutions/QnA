@@ -17,6 +17,7 @@
     <th>SrNo</th>
     <th>Test Set</th>
     <th>Edit</th>
+	<th>Delete</th>
   
   </tr>
 
@@ -25,23 +26,26 @@
 	    
             {% if testsetline_obj.filename != '' %}
             	<td>{{ testsetline_obj.filename }}</td>
-		<td>{{ testsetline_obj.srno }}</td>
-	    	<td>{{ testsetline_obj.testset }}</td>
-	    {% else %}
-		<td>{{ testsetline_obj.question }}</td>
-		<td>{{ testsetline_obj.srno }}</td>
-	    	<td>{{ testsetline_obj.testset }}</td>
+				<td>{{ testsetline_obj.srno }}</td>
+				<td>{{ testsetline_obj.testset }}</td>
+			{% else %}
+				<td>{{ testsetline_obj.question }}</td>
+				<td>{{ testsetline_obj.srno }}</td>
+				<td>{{ testsetline_obj.testset }}</td>
             {% endif %}              
 	    
 	    	<td>
 	            <a href="{% url "testsetline_edit" testsetline_obj.id %}" class="btn btn-primary inverse btn-sm">
 	            <img src="{% static "img/edit.png" %}" height="15" width="15" alt="Edit"></a>
 	        </td>
-	    
+			<td>
+				<a href="{% url "testsetline_delete" testsetline_obj.id %}" class="btn btn-primary inverse btn-sm">
+				<img src="{% static "img/delete.png" %}" height="15" width="15" alt="Delete"></a>
+			</td>
             {% empty %}
                 No TestSetLine yet
-    {% endfor %}
-    </tr>
-    </tbody>
+		</tr>
+	{% endfor %}
+</tbody>
 </table>
 

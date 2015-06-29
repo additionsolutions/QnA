@@ -40,7 +40,7 @@ class Content(models.Model):
     data = models.TextField(blank=True)
     startdate = models.DateField( blank=False, null=False)
     enddate = models.DateField( blank=False, null=False)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    picture = models.ImageField(upload_to='content_photo', blank=True)
     video = models.URLField(blank=True)
     contenttype = models.ForeignKey(ContentType,on_delete=models.PROTECT)
     groups = models.ManyToManyField(Group)

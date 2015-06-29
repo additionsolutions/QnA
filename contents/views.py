@@ -55,7 +55,7 @@ class ContentForm(ModelForm):
 
     class Meta:
         model = Content
-	exclude = ('video',)
+        exclude = ('video',)
         
                   
     #def __init__(self, *args, **kwargs):
@@ -110,6 +110,14 @@ def content(request):
       
     return render_to_response('contents/content.html', {'contents': notices, 'url_data': url_data }, context)
     
+def content_photo(request):
+    context = RequestContext(request)
+    current_url = resolve(request.path_info).url_name
+    contents = []
+    current_date = date.today()
+    if request.method == 'GET':
+        contents = Content.objects.filter(contenttype=ContentType.objects.filter(name=current_url), groups=request.user.groups.all(),startdate__lte=current_date,enddate__gte=current_date)
+    return render_to_response('contents/sliderbox.html', {'contents':contents}, context)
     
 ######################################
 # Content Data
