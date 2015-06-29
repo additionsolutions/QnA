@@ -140,3 +140,32 @@ def gradeit(request,usrid,testid):
 
     return render(request, 'ptest/gradeit.html', {'user_name':username,'testset_name':testset,'total':total,'testline': testsetline_obj[0],'questions': question_objs,'answers': answer_objs,})
     
+    
+ ## Record Answer
+def recoans(request, ans):
+    if request.method == 'GET':
+        try:
+            ans = int(ans)
+        except ValueError:
+            raise Http404()
+            
+    q = TestSetLine.objects.get(Q(srno=request.session['qno']), Q(testset=request.session['testno']))
+    request.session['no_ans'] = request.session['no_ans']-1
+    print "---#######------",q
+    if request.session['no_ans'] == 0:
+        try:
+            ansr = Answer.objects.get(question=q, user=request.user)
+        except Answer.DoesNotExist:
+            ansr = Answer.objects.create(marks=ans, question=q, user=request.user)
+        else:
+            ansr.marks = ans
+            ansr.user = request.user
+
+        ansr.save()
+        # Answer.objects.all().delete()            
+        
+        answer = "Answer recorded"
+    else:
+        answer = "Answer is not complete"
+        
+    return render(request, 'etests/ans_area.html', { 'answer': answer })

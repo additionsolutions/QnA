@@ -1,7 +1,7 @@
 {% if messages.count > 0 %}  
     {% for message in messages %}
-        <li class="list-group-item">  <b>{{ message.created }} </b><br/>
-        {{ message.short_message }}</li>
+        <li class="list-group-item">  <b>{{ message.created }} -- From : {{ message.from_user }}</b><br/>
+        {{ message.short_message|linebreaks }}</li>
     {% endfor %}
 {% else %}
     <li class="list-group-item"> No data to show</li>

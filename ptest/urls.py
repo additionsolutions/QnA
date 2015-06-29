@@ -9,4 +9,5 @@ urlpatterns = patterns('',
         url(r'^ptest/(\d{1,2})/$', views.exam, name='exam'),
         url(r'^ptest/sr/(\d{1,2})/$', views.examsr, name='examsr'),
         url(r'^ptest/gradeit/(\d{1,2})/(\d{1,2})$',views.gradeit, name='gradeit'),
+        url(r'^ptest/recoans/(\w)/(\d{1,2})$',views.recoans, name='recoans'),
         )

@@ -23,6 +23,10 @@ $(document).ready(function(){
                $('#messages').html(data);
            });
     
+    $.get('/c/content/photo', function(data){
+               $('#photo_gallary').html(data);
+           });
+    
     $('#start').click(function(){
         //var test_action;
         action = $(this).attr("test-action");
@@ -85,4 +89,20 @@ function getURL(url){
     }).responseText;
 }
 
+function recordMarks() {
+    var cnt = document.forms["QForm"]["count"].value;
+    loopcount = cnt + 1
+
+    for (i = 1; i < loopcount; i++) { 
+        //var x = document.forms["QForm"][i].value;
+        var ans = document.getElementById("q"+[i]).value
+        var scriptUrl = "/p/ptest/recoans/" + ans;
+        var msg=getURL(scriptUrl);
+        // write answer to db 
+    }
+    if (ans == null || ans == "") {
+        alert("No Answer given");
+        return false;
+    }
+}
 
