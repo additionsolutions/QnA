@@ -86,7 +86,8 @@ def user_update(request, pk, template_name='dmin/user_form.html'):
     if user_form.is_valid() and profile_form.is_valid():
         user = user_form.save()
         userprofile = profile_form.save(commit=False)
-        userprofile.picture = request.FILES['picture']
+        if 'picture' in request.FILES:
+             userprofile.picture = request.FILES['picture']
         #UserProfile.user=user
         #user.set_password(user.password)
         userprofile.save()
@@ -243,7 +244,7 @@ def contenttype_delete(request, pk, template_name='dmin/contenttype_form_delete.
         try:
             contenttype.delete()
         except ProtectedError:
-            raise Exception("Field can not be deleted")
+            return render(request, 'contents/message.html', { 'message': "Can not be deleted" })
         return redirect('contenttype_list')
     return render(request, template_name, {'object':contenttype})
 
@@ -269,6 +270,7 @@ def content_create(request, template_name='dmin/content_form.html'):
     form = ContentForm(request.POST or None, initial={'createdby': request.user})
     form.fields['createdby'] = ModelChoiceField(label="", widget=HiddenInput(attrs={'value':request.user}), queryset=User.objects.all())
     if form.is_valid():
+        form.save()
         content = form.save(commit=False)
         if 'picture' in request.FILES:
             content.picture = request.FILES['picture']
@@ -282,6 +284,7 @@ def content_update(request, pk, template_name='dmin/content_form.html'):
     content = get_object_or_404(Content, pk=pk)
     content_form = ContentForm(request.POST or None, request.FILES or None, instance=content)
     if content_form.is_valid():
+        content_form.save()
         content_pic = content_form.save(commit=False)
         if 'picture' in request.FILES:
              content_pic.picture = request.FILES['picture']
