@@ -1,6 +1,7 @@
 {% if contents.count > 0 %}  
     {% for content in contents %}
-        <li class="list-group-item"> <b><a href='/c/content_data/{{ content.id}}' >{{ content.name }} </a></b></li>
+        <li class="list-group-item"> <b><a href='/c/content_data/{{ content.id}}' >{{ content.name }} </a></b> <br/> {{ content.startdate }} -- {{ content.enddate }}
+        </li>
     {% endfor %}
 {% else %}
     <li class="list-group-item"> No data to show</li>
